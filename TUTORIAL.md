@@ -104,3 +104,20 @@ At the end the model will be compiled with an Adam optimizer (A gradient descent
 - Since the model is blind at the begin and just uses random weights, so at first epoch or trial, the error is maximum. Imagine a cloud of data points where a line should be drawn. The first line is randomly selected. The loss is calculated. Then in the next iteration, the weights are changed. At second epoch, again the error is calculated. The weights are updated according to gradient descent, toward the minimum of mean squared error. Again the loss is calculated...etc until the last epoch, where the error should be lower. One can also define the error convergence (Early Stopping scheduler) to avoid too many epoch iterations.
 
  <img src="./plots/loss.png" alt="Data Set" width="400"> 
+
+ # Forecast Series
+
+ As soon as the model is trained after fit step, the it is applied on the unseen test data sequence. The comparison of the prediction vs. forecast is then then evaluated with root mean square RMSE. The series are also correlated to each other, as an additional metric to illustrate the perfect match (high correlaton).
+
+<img src="./plots/forecast.png" alt="Data Set" width="400"> 
+<img src="./plots/forecast_3.png" alt="Data Set" width="400"> 
+
+ # Heatmaps of Confusion Matrix
+
+ This procedure is performed for all the geo-locations, numbre of variables that has been used in the model. For each geo-location sample and variable the model is trained and the RMSE of the prediction vs. test series are calculated. This confusion matrix of the pairs (i:location,j:variable) are then plotted as heat maps for RMSE confusion matrix and correlation confusion matrix to summarize and given an overall view of the results.
+
+ 
+<img src="./plots/heatmap_rmse.png" alt="Data Set" width="400"> 
+<img src="./plots/heatmap_correlation.png" alt="Data Set" width="400"> 
+ 
+ 
