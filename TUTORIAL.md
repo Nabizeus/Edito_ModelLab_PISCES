@@ -95,9 +95,12 @@ At the end the model will be compiled with an Adam optimizer (A gradient descent
 - model.add(LSTM(units=50, input_shape=(X.shape[1], X.shape[2])))
 
 # Add dense layers
-- model.add(Dense(units=32, activation='relu')) */ Dense layer that transforms with ReLu. A function that converts all negative values into zero*/
-- model.add(Dense(units=1, activation='linear'))  */For predicting a single output*/
-- model.add(Dropout(0.1)) */Adding dropout, to avoid overfitting (omitting 10% of data points)*/
-- model.add(Dense(units=1)) */1D output of predicted value*/
+- model.add(Dense(units=32, activation='relu')) *Dense layer that transforms with ReLu. A function that converts all negative values into zero*
+- model.add(Dense(units=1, activation='linear'))  *For predicting a single output*
+- model.add(Dropout(0.1)) *Adding dropout, to avoid overfitting (omitting 10% of data points)*
+- model.add(Dense(units=1)) *1D output of predicted value*
 - model.compile(optimizer='adam', loss='mean_squared_error')
-- model.fit(X, Y, epochs=100, batch_size=32, verbose=0) */100 epochs (trials), where data sets are splitted into 32 sequenced batches (better digestable for the system)*/
+- model.fit(X, Y, epochs=100, batch_size=32, verbose=0) *100 epochs (trials). At each epoch, the data sets are split into 32 sequenced batches (better digestible for the system)*
+- Since the model is blind at the begin and just uses random weights, so at first epoch or trial, the error is maximum. Imagine a cloud of data points where a line should be drawn. The first line is randomly selected. The loss is calculated. Then in the next iteration, the weights are changed. At second epoch, again the error is calculated. The weights are updated according to gradient descent, toward the minimum of mean squared error. Again the loss is calculated...etc until the last epoch, where the error should be lower. One can also define the error convergence (Early Stopping scheduler) to avoid too many epoch iterations.
+
+ <img src="./plots/loss.png" alt="Data Set" width="400"> 
